@@ -1,0 +1,4 @@
+postmaster: could not access directory "/usr/local/pgsql/data": No such file or directory
+Run initdb or pg_basebackup to initialize a PostgreSQL data directory.
+2020-02-15 17:32:14.993 JST [28275] FATAL:  lock file "postmaster.pid" already exists
+2020-02-15 17:32:14.993 JST [28275] HINT:  Is another postmaster (PID 28264) running in data directory "/usr/local/var/postgres"?
