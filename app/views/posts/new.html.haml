@@ -1,0 +1,9 @@
+.container
+  .post-form
+    = form_for @post, action: '/posts' do |f|
+      = f.text_field :title, placeholder: "タイトルを入力", class: "post-form__title"
+      = f.text_area :content, placeholder: "内容", class: "post-form__content"
+      = f.label :image, class: "post-form__image" do
+        = icon('fas', 'image')
+        = f.file_field :image, class: "post-form__image--file"
+      = f.submit "Do it!!", class: "post-form__submit"

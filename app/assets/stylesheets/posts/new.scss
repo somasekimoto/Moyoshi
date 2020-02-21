@@ -1,0 +1,18 @@
+.container{
+  .post-form{
+    &__title{
+
+    }
+    &__content{
+
+    }
+    &__image{
+      &--file{
+        display: none;
+      }
+    }
+    &__submit{
+
+    }
+  }
+}
