@@ -18,9 +18,10 @@
 |Column|Type|Options|
 |------|----|-------|
 |title|string|null: false|
-|content|text||
-|image|string||
-|user_id|integer|null: false, foreign_key: true|
+|content|text|
+|image|string|
+|user|references|null: false, foreign_key: true|
+|comment|references|foreign_key: true|
 
 ### association
 - belongs_to :user
@@ -43,6 +44,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |genre|text|null: false|
+|post|references|foreign_key: true|
 
 ### association
 - has_many :posts_genres
@@ -51,12 +53,12 @@
 ## posts_genres table
 |Column|Type|Options|
 |------|----|-------|
-|post_id|integer|null: false, foreign_key: true|
-|genre_id|integer|null: false, foreign_key: true|
+|post|references|null: false, foreign_key: true|
+|genre|references|null: false, foreign_key: true|
 
 ### association
-- belongs_to :post_id
-- belongs_to :genre_id
+- belongs_to :post
+- belongs_to :genre
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

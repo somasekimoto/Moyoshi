@@ -1,9 +1,71 @@
-.wrapper
-  .header
-    %h2.app-name
-      Moyoshi
-    .search-bar
-    .user-info
-  .events
-  .genre
-  .footer
+.container-fluid.bg-info
+  %header.navbar.navbar-expand-lg.bg-danger.row.shadow-sm.fixed-top.px-5
+    %h5.col
+      = link_to "Moyoshi", "/", class: "app-name__logo text-decoration-none text-center"
+    .col.bg-secondary
+      = form_for search_posts_path, {class: "search-form d-sm-inline-block", local: true} do |f|
+        .input-group
+          = f.text_field :keyword, placeholder: "検索する", class: "search-input"
+          .input-group-append
+            %button.btn.btn-primary
+              .fas.fa-search.fa-sm
+    .col.text-right
+      - if user_signed_in?
+        = link_to "#{current_user.name}", new_user_registration_path, class: "edit-user user-btn text-decoration-none mr-3"
+        = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-logout user-btn text-decoration-none"
+      - else
+        = link_to "新規登録", new_user_registration_path, class: "new-user user-btn text-decoration-none mr-3"
+        = link_to "ログイン", new_user_session_path, class: "user-login user-btn text-decoration-none"
+  %section.events.p-5
+    .events__text.text-white.m-4.text-center.h3
+      今日は何する？
+    .events__wrapper.row
+      - @posts.each do |post| 
+        .events__content.col-sm-6.col-md-3.mb-3
+          %label.card.m-1
+            %img.card-img-top{src: "#{post.image}", alt: "image none"}
+            .card-body.event
+              %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
+              .event__name 
+                #{post.user.name} さん
+              .text-right
+                2020/02/29
+    .new-post.text-center.m-3
+      - if user_signed_in?
+        = link_to "投稿する", new_post_path, class: "new-post--btn btn-primary p-2 text-decoration-none"
+      - else
+        .row
+        = link_to "新規登録", new_user_registration_path, class: "new-post--btn btn-primary p-2 m-1 mr-4 text-decoration-none"
+        = link_to "ログイン", new_user_session_path, class: "new-post--btn btn-secondary p-2 m-1 text-decoration-none"
+  %section.genres
+    .container.bg-white
+      %h2.m-1.pt-3.text-center.text-secondary
+        ジャンルから選ぶ
+      %hr.divider.my-4
+      .row.pb-5
+        .col-md-6.col-lg-3.text-center
+          .mt-5
+            .fas.fa-4x.fa-hands-helping
+            = link_to "ボランティア", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
+            %p.text-muted.mb-0
+              近くの農業・漁業を体験しよう
+        .col-md-6.col-lg-3.text-center
+          .mt-5
+            .fas.fa-4x.fa-chalkboard-teacher
+            = link_to "教室・勉強会", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
+            %p.text-muted.mb-0
+              自習室、プログラミング教室など
+        .col-md-6.col-lg-3.text-center
+          .mt-5
+            .fas.fa-4x.fa-piggy-bank
+            = link_to "SALE", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
+            %p.text-muted.mb-0
+              今日のお得情報をお届け！
+        .col-md-6.col-lg-3.text-center
+          .mt-5
+            .fas.fa-4x.fa-user-friends
+            = link_to "ソーシャル", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
+            %p.text-muted.mb-0
+              イベントやパーティーに参加！
+  .footer.text-center
+    %copyright copyright
