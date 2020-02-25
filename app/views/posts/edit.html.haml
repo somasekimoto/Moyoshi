@@ -1,19 +1,20 @@
 .container.h-100.mt-5.bg-info
   %h2.pt-5.text-center.mb-5.text-white
-    What is your idea ?
+    Update your event
   .form.px-5
-    = form_for @post, action: '/posts' do |f|
+    = form_for @post do |f|
       .form_group.mx-5
         .row.mb-3.text-center
           タイトル：
           = f.text_field :title, class: "post-form__title col-6"
         .row.mb-3
           内容：
-          = f.text_area :content, placeholder: "イベントの詳しい内容を記入してください", size: "20x10", class: "post-form__content col form-control"
+          = f.text_area :content, placeholder: "イベントの詳しい内容を記入してください", class: "post-form__content col form-control"
         .row.mb-4
           画像：
           = f.label :image, class: "post-form__image col" do
             = icon('fas fa-2x', 'image',)
             = f.file_field :image, class: "post-form__image--file d-none"
         .row.mb-3.offset-5
-          = f.submit "Moyosu!!", class: "post-form__submit col-auto btn-primary p-3"
+          = link_to "キャンセル",  post_path(@post), class: "col-auto mr-4 btn-secondary p-3"
+          = f.submit "更新", class: "post-form__submit col-auto btn-primary p-3"

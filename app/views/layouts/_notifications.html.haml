@@ -1,0 +1,4 @@
+.notification.text-center.fixed-top.mb-5
+  - flash.each do |name, msg|
+    %div{class: "alert alert-#{name}"}
+      #{msg}

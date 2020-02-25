@@ -1,9 +1,55 @@
-.container
-  .card{style: 'width: 18rem;'}
-    %img.image{src: "#{@post.image}"}
-      
-    .title
-      #{@post.title}
-    .content
-      #{@post.content}
+.bg-info
+  .container
+    .row
+      .col.mt-5.p-5.shadow-lg.card{style: 'width: 18rem;'}
+        %img.col.image{src: "#{@post.image}"}
+        .title.col.text-center.m-4
+          #{@post.title}
+        .content.col.text-center.mb-4
+          #{@post.content}
+        .name.col.text-right
+          -if user_signed_in?
+            -if @post.user_id === current_user.id 
+              あなたの投稿
+            - else
+              #{@post.user.name} さんの投稿
+          - else
+            #{@post.user.name} さんの投稿
+        .date.col.text-right.mb-4
+          = l @post.created_at, format: :long
+        -if user_signed_in?
+          - if @post.user_id === current_user.id 
+            .row
+              .col.text-left
+                = link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-primary mr-4 px-3'
+                  
+                = link_to "削除", post_path, method: :delete, class: 'btn btn-outline-danger px-3'
+              .col-1.btn-secondary.like.offset-right
+                イイね
+          - else
+            .row
+              .col-1.btn-secondary.like.offset-10
+                イイね
+        - else
+          .row
+            .col-1.btn-secondary.like.offset-10
+              イイね
+    .container.text-center.mt-5.py-5.shadow-lg.card
+      - if current_user
+        = form_for [@post, @comment], {class: "row", id: "new_comment"} do |f|
+          = f.text_field :text, placeholder: "コメントを入力", size: "10x20", class: "comment_text col-8 mx-auto rounded"
+          = f.submit "送信", class: "comment_submit col-2 mb-4 rounded"
+      -else
+        %p コメントの投稿には新規登録/ログインが必要です
+      .comments-box.border
+        .h3.text-left.p-3.text-info
+          < コメント一覧 >
+        - if @comments
+          .comments.overflow-auto.mw-75.mh-75
+            - @comments.each do |comment|
+              .text-wrap.text-break.row.mx-3
+                %p.col-3
+                  #{comment.user.name}:
+                %p.col-auto.text-left
+                  #{comment.text}
   
