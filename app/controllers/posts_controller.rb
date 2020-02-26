@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.all.includes(:user).order('created_at DESC')
+
   end
 
   def new
@@ -8,7 +9,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    Post.create(post_params)
+    @post = Post.create(post_params)
+    if @post.save
+      redirect_to root_path, success: "投稿を作成しました"
+    else
+      render new_post_path, danger: "投稿に失敗しました"
+    end
   end
 
   def show
@@ -17,6 +23,16 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    @post.update
+  end
+
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
   end
 
   def search
@@ -29,6 +45,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content, :image, :title).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :image, :title, :genre_list).merge(user_id: current_user.id)
   end
 end

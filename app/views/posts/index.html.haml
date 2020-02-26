@@ -22,14 +22,23 @@
     .events__wrapper.row
       - @posts.each do |post| 
         .events__content.col-sm-6.col-md-3.mb-3
-          %label.card.m-1
-            %img.card-img-top{src: "#{post.image}", alt: "image none"}
-            .card-body.event
-              %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-              .event__name 
-                #{post.user.name} さん
-              .text-right
-                2020/02/29
+          .card{id: post.id}
+            %label.m-1
+              - if post.image
+                %img.card-img-top{src: "#{post.image}"}
+              - else
+                %img.card-img-top{src: "/public/noimage.jpeg"}
+              .card-body.event
+                %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
+                .event__name 
+                  #{post.user.name} さん
+                .text-right
+                  = l post.created_at, format: :long
+                - genre_list.each do |tag|
+                  = tag
+          .offset-8.col-auto.card
+            .text-center
+              = render partial: '/posts/posts', locals: {post: post}
     .new-post.text-center.m-3
       - if user_signed_in?
         = link_to "投稿する", new_post_path, class: "new-post--btn btn-primary p-2 text-decoration-none"
