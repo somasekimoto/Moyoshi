@@ -77,3 +77,11 @@ gem 'mini_magick'
 gem 'jquery-rails'
 
 gem 'acts-as-taggable-on', '~> 6.0'
+
+gem 'pry-rails'
+
+gem 'rails-i18n'
+
+gem 'devise-i18n'
+
+gem 'devise-bootstrap-views'
