@@ -4,8 +4,12 @@ Rails.application.routes.draw do
 
   root "posts#index"
   resources :posts, except:[:index] do
+    resources :comments, only: :create
     collection do
       get :search
     end
   end
+  
+  post   '/like/:post_id' => 'likes#like',   as: 'like'
+  delete '/like/:post_id' => 'likes#unlike', as: 'unlike'
 end
