@@ -17,11 +17,16 @@
                   #{post.user.name} さん
                 .text-right
                   = l post.created_at, format: :long
+          .card.col-auto
+            .text-left
+              - post.genre_list.each do |genre|
+                .badge.badge-primary{data:{role: "tagsinput"}}
+                  = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
           - if user_signed_in?
             .offset-8.col-auto.card
               .text-center
                 = render partial: '/posts/posts', locals: {post: post}
-    .new-post.text-center.m-3
+    .new-post.text-center.m-5
       - if user_signed_in?
         = link_to "投稿する", new_post_path, class: "new-post--btn btn-primary p-3 text-decoration-none rounded"
       - else
@@ -29,33 +34,7 @@
         = link_to "新規登録", new_user_registration_path, class: "new-post--btn btn-primary p-3 m-1 mr-4 text-decoration-none rounded"
         = link_to "ログイン", new_user_session_path, class: "new-post--btn btn-secondary p-3 m-1 text-decoration-none rounded"
   %section.genres
-    .container.bg-white
-      %h2.m-1.pt-3.text-center.text-secondary
-        ジャンルから選ぶ
-      %hr.divider.my-4
-      .row.pb-5
-        .col-md-6.col-lg-3.text-center
-          .mt-5
-            .fas.fa-4x.fa-hands-helping
-            = link_to "ボランティア", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
-            %p.text-muted.mb-0
-              近くの農業・漁業を体験しよう
-        .col-md-6.col-lg-3.text-center
-          .mt-5
-            .fas.fa-4x.fa-chalkboard-teacher
-            = link_to "教室・勉強会", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
-            %p.text-muted.mb-0
-              自習室、プログラミング教室など
-        .col-md-6.col-lg-3.text-center
-          .mt-5
-            .fas.fa-4x.fa-piggy-bank
-            = link_to "SALE", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
-            %p.text-muted.mb-0
-              今日のお得情報をお届け！
-        .col-md-6.col-lg-3.text-center
-          .mt-5
-            .fas.fa-4x.fa-user-friends
-            = link_to "ソーシャル", "#", class: "icon text-decoration-none h3 mb-2 stretched-link"
-            %p.text-muted.mb-0
-              イベントやパーティーに参加！
-  
+    .container.bg-white.p-2
+      .row
+        -# - @posts.each do |post|
+        = raw(@posts.tag_list.map { |t| link_to t, tag_path(t) }.join(', '))

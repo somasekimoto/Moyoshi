@@ -1,22 +1,24 @@
 .bg-info.py-5
   .container.py-5
+    .h4.text-center.text-white.my-5
+      新規投稿
     .post-form
       = form_for @post, action: '/posts' do |f|
         .mx-5
           .form-group.row.mb-3.text-center
-            タイトル：
+            .text-white
+              タイトル：
             = f.text_field :title, class: "form-control post-form__title col-6"
           .form-group.row.mb-3
-            内容：
-            = f.text_area :content, placeholder: "イベントの詳しい内容を記入してください", size: "20x10", class: "post-form__content col form-control"
+            .text-white
+              内容：
+            = f.text_area :content, placeholder: "詳しい内容を記入してください", size: "20x10", class: "post-form__content col form-control"
           .form-group.row.mb-4
-            画像：
-            = f.label :image, class: "post-form__image col" do
+            = f.label :image, "画像", class: "post-form__image col offset-1 text-white" do
               = icon('fas fa-2x', 'image',)
               = f.file_field :image, class: "post-form__image--file d-none"
           .form-group.row.mb-4
-            ジャンル：
-            = f.label :genre_list
-            = f.text_field :genre_list, value: @post.genre_list.join(','), class: 'form-control'
+            = f.label :genre_list, "ジャンル：  ", class: "text-white"
+            = f.text_field :genre_list, value: @post.genre_list.join(','), class: "form-control", data:{role: "tagsinput"}
           .row.pb-3.offset-5
             = f.submit "もよおす!!", class: "post-form__submit col-auto btn-primary p-3 rounded"

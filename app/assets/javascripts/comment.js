@@ -25,12 +25,16 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.comments').append(html);
+      var content = $('.comment_text').val();
+      if( content !== ""){
+        $('.comments').append(html);
+      }
       $('.comment_text').val('');
       $('.comment_submit').prop('disabled', false);
     })
     .fail(function(){
       alert('コメント送信に失敗しました。');
+      $('.comment_submit').prop('disabled', false);
     });
   })
 })

@@ -17,13 +17,17 @@
             #{@post.user.name} さんの投稿
         .date.col.text-right.mb-4
           = l @post.created_at, format: :long
+        %p
+          .genre
+            ジャンル: 
+            = raw(@post.genre_list.map { |t| link_to t, tag_path(t) }.join(',')) 
         -if user_signed_in?
           - if @post.user_id === current_user.id 
             .row
               .col.text-left
                 = link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-primary mr-4 px-3'
                   
-                = link_to "削除", post_path, method: :delete, class: 'btn btn-outline-danger px-3'
+                = link_to "削除", post_path, method: :delete, remote: true, data: {confirm: "ポスト「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
               .btn.col-auto.like.offset-right.text-center
                 = render partial: '/posts/posts', locals: {post: @post}
           - else
