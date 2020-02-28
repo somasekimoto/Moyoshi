@@ -3,13 +3,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root "posts#index"
+  
   resources :posts, except:[:index] do
     resources :comments, only: :create
     collection do
       get :search
     end
   end
-  
+
+  get 'tags/:tag', to: 'posts#index', as: :tag
   post   '/like/:post_id' => 'likes#like',   as: 'like'
   delete '/like/:post_id' => 'likes#unlike', as: 'unlike'
 end

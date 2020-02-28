@@ -1,14 +1,11 @@
 class CommentsController < ApplicationController
   def create
     @comment = Comment.create(comment_params)
-    if @comment.save
+    if @comment
       respond_to do |format|
         format.json { render }
         format.html { redirect_to post_path(params[:post_id]) }
       end
-    else
-      flash.now[:alert] = 'コメントを入力してください'
-      render :show
     end
   end
 
