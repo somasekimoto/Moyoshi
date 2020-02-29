@@ -1,4 +1,6 @@
+
 - tag_list.each do |tag|
-  %span
-    .badge.badge-primary.mr-1.p-2
-      = raw(tag_list.map { |t| link_to t, tag_path(t) }.join(','))
+  .badge.badge-primary.mr-1.p-2
+    -# = link_to "#{tag}", tag_path(tag), class: "text-white text-decoration-none"
+    - @tag.push(tag)
+

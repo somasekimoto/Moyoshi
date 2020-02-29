@@ -1,0 +1,6 @@
+= form_for search_posts_path, {class: "search-form d-sm-inline-block", local: true, method: :get} do |f|
+  .input-group
+    = f.text_field :keyword, placeholder: "検索する", class: "rounded search-input col-auto"
+    = f.submit "検索する"
+    -# = f.submit class: "rounded btn btn-info" do
+    -#   = icon('fas', 'fa-search')

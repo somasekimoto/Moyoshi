@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     if params[:tag]
-      @posts = Post.tagged_with(params[:tag])
+      @posts = Post.all.includes(:user).order('created_at DESC').tagged_with(params[:tag])
     else
       @posts = Post.all.includes(:user).order('created_at DESC')
     end
@@ -43,7 +43,12 @@ class PostsController < ApplicationController
   end
 
   def search
-    @posts = Tweet.search(params[:keyword])
+    keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
+
+    negative_keywords, positive_keywords = 
+    keywords.partition {|keyword| keyword.start_with?("-") }
+    
+    @posts = Post.search(params[:keyword])
     respond_to do |format|
       format.html
       format.json
@@ -52,6 +57,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content, :image, :title, :genre_list).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :image, :title, :tag_list).merge(user_id: current_user.id)
   end
 end

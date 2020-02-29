@@ -10,4 +10,16 @@ class Post < ApplicationRecord
   validates :content, presence: true, unless: :image?
 
   mount_uploader :image, ImageUploader
+
+  def self.search(search)
+    if search
+      Post.where('title LIKE(?)', 'content LIKE(?)', "%#{search}%", "%#{search}%")
+    else
+      if params[:tag]
+        @posts = Post.all.includes(:user).order('created_at DESC').tagged_with(params[:tag])
+      else
+        @posts = Post.all.includes(:user).order('created_at DESC')
+      end
+    end
+  end
 end

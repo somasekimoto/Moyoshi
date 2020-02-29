@@ -1,20 +1,21 @@
-.container-fluid.bg-info.text-white.py-5.vh-100
-  %h2.text-center.my-5
-    ログイン
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .field.text-left
-      = f.label :email
-      %br/
-      = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
-    .field.text-left.mt-3
-      = f.label :password
-      %br/
-      = f.password_field :password, autocomplete: "current-password", class: "form-control mb-2"
-    - if devise_mapping.rememberable?
+.container-fluid.bg-info.py-5.vh-100.text-white
+  .container.bg-info
+    %h2.text-center.my-5
+      ログイン
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field.text-left
-        = f.check_box :remember_me
-        = f.label :remember_me
-    .actions.text-center.mt-3
-      = f.submit "ログイン", class: "bg-primary text-white rounded p-3"
-  .text-center.mt-5.text-white
-    = render "devise/shared/links"
+        = f.label :email
+        %br/
+        = f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control"
+      .field.text-left.mt-3
+        = f.label :password
+        %br/
+        = f.password_field :password, autocomplete: "current-password", class: "form-control mb-2"
+      - if devise_mapping.rememberable?
+        .field.text-left
+          = f.check_box :remember_me
+          = f.label :remember_me
+      .actions.text-center.mt-3
+        = f.submit "ログイン", class: "bg-primary text-white rounded p-3"
+    .text-center.mt-5.text-white
+      = render "devise/shared/links"
