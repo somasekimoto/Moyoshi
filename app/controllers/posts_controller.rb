@@ -42,21 +42,8 @@ class PostsController < ApplicationController
     redirect_to root_path
   end
 
-  def search
-    keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
-
-    negative_keywords, positive_keywords = 
-    keywords.partition {|keyword| keyword.start_with?("-") }
-    
-    @posts = Post.search(params[:keyword])
-    respond_to do |format|
-      format.html
-      format.json
-    end
-  end
-
   private
   def post_params
-    params.require(:post).permit(:content, :image, :title, :tag_list).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :image, :title, :genre_list).merge(user_id: current_user.id)
   end
 end

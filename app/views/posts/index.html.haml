@@ -1,12 +1,11 @@
 .container-fluid.bg-info.pb-4
-  .container.bg-info
-    %section.form-group.pt-5
-      = form_for search_posts_path, {class: "search-form d-sm-inline-block text-center", local: true, method: :get} do |f|
-        .input-group.mt-5
-          = f.text_field :keyword, placeholder: "検索する", class: "rounded search-input col-auto"
-          = f.submit "検索する", name: nil
-          -# = f.submit class: "rounded btn btn-info" do
-          -#   = icon('fas', 'fa-search')
+  .container.bg-info.pt-5
+    %section.form-group.w-100.row
+      .search-form.d-sm-inline-block.mx-auto
+        = form_with(url: posts_searches_path, local: true, method: :get) do |f|
+          .input-group.mt-5.mx-auto.col-auto
+            = f.text_field :keyword, placeholder: "投稿を検索する", class: "rounded search-input col-auto"
+            = f.submit "検索", class: "rounded btn btn-primary text-white fas fa-search  p-3"
                 
     %section.events.px-5.pb-5
       .events__text.text-white.m-5.text-center.h3
