@@ -17,10 +17,12 @@
             #{@post.user.name} さんの投稿
         .date.col.text-right.mb-4
           = l @post.created_at, format: :long
-        %p
-          .genre
-            ジャンル: 
-            = raw(@post.genre_list.map { |t| link_to t, tag_path(t) }.join(',')) 
+        - if @post.tag_counts != 0
+          %p
+            .genre
+              ジャンル: 
+              .badge.badge-primary
+                = raw(@post.genre_list.map { |t| link_to t, tag_path(t), class: 'text-white text-decoration-none'}.join(', ')) 
         -if user_signed_in?
           - if @post.user_id === current_user.id 
             .row

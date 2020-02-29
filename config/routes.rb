@@ -2,13 +2,14 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  root "posts#index"
-  
-  resources :posts, except:[:index] do
+  root to: "posts#index"
+
+  namespace :posts do
+    resources :searches, only: :index
+  end
+
+  resources :posts do
     resources :comments, only: :create
-    collection do
-      get :search
-    end
   end
 
   get 'tags/:tag', to: 'posts#index', as: :tag
