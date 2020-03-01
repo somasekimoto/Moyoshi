@@ -15,8 +15,8 @@
           .events__content.col-sm-6.col-md-3.mb-3
             .card{id: post.id}
               %label.m-1
-                - if post.image
-                  %img.card-img-top{src: "#{post.image}"}
+                - if post.image != nil
+                  %img.card-img-top{src: "#{post.image}", size: "50x50"}
                 - else
                   %img.card-img-top{src: "/public/noimage.jpeg"}
                 .card-body.event
@@ -44,7 +44,7 @@
     %section.genres
       .container.bg-white.p-2
         %h2.m-1.pt-3.text-center.text-secondary
-          = link_to "ジャンルから選ぶ", "/tags/index"
+          ジャンルから選ぶ
         %hr.divider.my-4
         .row.pb-5
           .col-md-6.col-lg-3.text-center
