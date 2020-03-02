@@ -21,4 +21,4 @@
             = f.label :genre_list, "ジャンル：  ", class: "text-white"
             = f.text_field :genre_list, value: @post.genre_list.join(','), class: "form-control", data:{role: "tagsinput"}
           .row.pb-3.offset-5
-            = f.submit "もよおす!!", class: "post-form__submit col-auto btn-primary p-3 rounded"
+            = f.submit "投稿", class: "post-form__submit col-auto btn-primary p-3 rounded"

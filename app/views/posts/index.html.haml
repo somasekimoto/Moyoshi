@@ -9,31 +9,32 @@
                 
     %section.events.px-5.pb-5
       .events__text.text-white.m-5.text-center.h3
-        今日は何する？
-      .events__wrapper.row
-        - @posts.each do |post| 
-          .events__content.col-sm-6.col-md-3.mb-3
-            .card{id: post.id}
-              %label.m-1
-                - if post.image
-                  %img.card-img-top{src: "#{post.image}"}
-                - else
-                  %img.card-img-top{src: "/public/noimage.jpeg"}
-                .card-body.event
-                  %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-                  .event__name 
-                    #{post.user.name} さん
-                  .text-right
-                    = l post.created_at, format: :long
-            .card.col-auto
-              .text-left
-                - post.genre_list.each do |genre|
-                  .badge.badge-primary{data:{role: "tagsinput"}}
-                    = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
-            - if user_signed_in?
-              .offset-8.col-auto.card
-                .text-center
-                  = render partial: '/posts/posts', locals: {post: post}
+      #paginate
+        .events__wrapper.row
+          - @posts.each do |post| 
+            .events__content.col-sm-6.col-md-4.mb-3
+              .card{id: post.id}
+                %label.m-1
+                  - if post.image.present?
+                    %img.card-img-top{src: "#{post.image}"}
+                  - else
+                    %img.card-img-top{src: "/public/noimage.png"}
+                  .card-body.event
+                    %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
+                    .event__name 
+                      #{post.user.name} さん
+                    .text-right
+                      = l post.created_at, format: :long
+              .card.col-auto
+                .text-left
+                  - post.genre_list.each do |genre|
+                    .badge.badge-primary{data:{role: "tagsinput"}}
+                      = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
+              - if user_signed_in?
+                .offset-8.col-auto.card
+                  .text-center
+                    = render partial: '/posts/posts', locals: {post: post}
+        = paginate @posts, remote: true
       .new-post.text-center.m-5
         - if user_signed_in?
           = link_to "投稿する", new_post_path, class: "new-post--btn btn-primary p-3 text-decoration-none rounded"
@@ -42,9 +43,9 @@
           = link_to "新規登録", new_user_registration_path, class: "new-post--btn btn-primary p-3 m-1 mr-4 text-decoration-none rounded"
           = link_to "ログイン", new_user_session_path, class: "new-post--btn btn-secondary p-3 m-1 text-decoration-none rounded"
     %section.genres
-      .container.bg-white.p-2
+      .container.bg-white.p-1.rounded
         %h2.m-1.pt-3.text-center.text-secondary
-          = link_to "ジャンルから選ぶ", "/tags/index"
+          ジャンルから選ぶ
         %hr.divider.my-4
         .row.pb-5
           .col-md-6.col-lg-3.text-center
@@ -52,11 +53,11 @@
               .fas.fa-4x.fa-hands-helping
               = link_to "ボランティア", tag_path("ボランティア"), class: "icon text-decoration-none h3 mb-2 stretched-link"
               %p.text-muted.mb-0
-                近くの農業・漁業を体験しよう
+                農業・漁業・介護を体験しよう
           .col-md-6.col-lg-3.text-center
             .mt-5
               .fas.fa-4x.fa-chalkboard-teacher
-              = link_to "教室・勉強会", tag_path("勉強会・教室"), class: "icon text-decoration-none h3 mb-2 stretched-link"
+              = link_to "教室・勉強会", tag_path("教室・勉強会"), class: "icon text-decoration-none h3 mb-2 stretched-link"
               %p.text-muted.mb-0
                 自習室、プログラミング教室など
           .col-md-6.col-lg-3.text-center
