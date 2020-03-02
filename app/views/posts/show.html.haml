@@ -21,15 +21,16 @@
           %p
             .genre
               ジャンル: 
-              .badge.badge-primary
-                = raw(@post.genre_list.map { |t| link_to t, tag_path(t), class: 'text-white text-decoration-none'}.join(', ')) 
+              - @post.genre_list.group_by{|i| i}.keys.each do |tag|
+                .badge.badge-primary
+                  = link_to "#{tag}", tag_path(tag), class: "text-white text-decoration-none"
         -if user_signed_in?
           - if @post.user_id === current_user.id 
             .row
               .col.text-left
                 = link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-primary mr-4 px-3'
                   
-                = link_to "削除", post_path, method: :delete, remote: true, data: {confirm: "ポスト「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
+                = link_to "削除", post_path, method: :delete, local: true, data: {confirm: "ポスト「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
               .btn.col-auto.like.offset-right.text-center
                 = render partial: '/posts/posts', locals: {post: @post}
           - else

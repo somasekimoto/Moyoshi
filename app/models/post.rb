@@ -14,4 +14,6 @@ class Post < ApplicationRecord
   def thumbnail
     return self.image.variant(resize: '50x50')
   end
+
+  @post_genres = Post.all.includes(:user).order('created_at DESC').tagged_with(:tag)
 end

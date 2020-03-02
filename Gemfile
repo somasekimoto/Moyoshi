@@ -66,7 +66,7 @@ gem 'haml-rails'
 
 gem 'font-awesome-sass'
 
-
+gem 'rails-i18n', '~> 5.1'
 gem 'bootstrap'
 
 
@@ -80,8 +80,7 @@ gem 'acts-as-taggable-on', '~> 6.0'
 
 gem 'pry-rails'
 
-gem 'rails-i18n'
-
 gem 'devise-i18n'
 
 gem 'devise-bootstrap-views'
+gem 'kaminari'
