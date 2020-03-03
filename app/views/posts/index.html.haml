@@ -2,7 +2,7 @@
   .container.bg-info.pt-5
     %section.form-group.w-100.row
       .search-form.d-sm-inline-block.mx-auto
-        = form_with(url: posts_searches_path, local: true, method: :get) do |f|
+        = form_with(url: posts_searches_path, local: true, method: :get, id: "forms") do |f|
           .input-group.mt-5.mx-auto.col-auto
             = f.text_field :keyword, placeholder: "投稿を検索する", class: "rounded search-input col-auto"
             = f.submit "検索", class: "rounded btn btn-primary text-white fas fa-search  p-3"

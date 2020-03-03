@@ -7,9 +7,7 @@ class PostsController < ApplicationController
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
       
     end
-
-  
-
+    
     respond_to do |format|
       format.html
       format.js
