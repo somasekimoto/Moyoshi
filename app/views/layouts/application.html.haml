@@ -2,7 +2,7 @@
 %html
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title K-jiban
+    %title Moyoshi
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
@@ -10,7 +10,7 @@
   %body
     %header.navbar.navbar-expand-lg.bg-primary.row.shadow-sm.fixed-top.px-5
       %h5.col-auto.text-left
-        = link_to "K-jiban", "/", class: "app-name__logo text-decoration-none text-center text-white"
+        = link_to "Moyoshi", "/", class: "app-name__logo text-decoration-none text-center text-white"
       .col.text-left
         - if user_signed_in?
           = link_to "#{current_user.name}", edit_user_registration_path, class: "edit-user user-btn text-decoration-none mr-3 text-white"
