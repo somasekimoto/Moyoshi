@@ -16,6 +16,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require activestorage
+//= require bootstrap-tagsinput
 
 
 //= require_tree .

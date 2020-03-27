@@ -16,8 +16,8 @@
     },
     freeInput: true,
     addOnBlur: true,
-    maxTags: undefined,
-    maxChars: undefined,
+    maxTags: 5,
+    maxChars: 10,
     confirmKeys: [13, 44],
     delimiter: ',',
     delimiterRegex: null,
@@ -28,6 +28,15 @@
     trimValue: false,
     allowDuplicates: false
   };
+
+
+  $("input").on("keydown", function(e) {
+    if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+      return false;
+    } else {
+      return true;
+    }
+  });
 
   /**
    * Constructor function

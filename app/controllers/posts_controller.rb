@@ -23,7 +23,7 @@ class PostsController < ApplicationController
     if @post.save
       redirect_to root_path, success: "投稿を作成しました"
     else
-      render new_post_path, danger: "投稿に失敗しました"
+      render :new, danger: "投稿に失敗しました"
     end
   end
 
