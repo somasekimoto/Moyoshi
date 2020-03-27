@@ -1,6 +1,6 @@
 (function ($) {
   "use strict";
-
+  
   var defaultOptions = {
     tagClass: function(item) {
       return 'label label-info';
@@ -30,7 +30,7 @@
   };
 
 
-  $("input").on("keydown", function(e) {
+  $(document).on("keydown", 'input' ,function(e) {
     if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
       return false;
     } else {
