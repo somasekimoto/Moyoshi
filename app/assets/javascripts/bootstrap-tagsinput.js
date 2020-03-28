@@ -29,14 +29,13 @@
     allowDuplicates: false
   };
 
-
-  $(document).on("keydown", 'input' ,function(e) {
-    if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
-      return false;
-    } else {
-      return true;
-    }
+  $(document).on('keypress', '.bootstrap-tagsinput input', function(e){
+    if (e.keyCode == 13){
+      e.keyCode = 44;
+      e.preventDefault();
+    };
   });
+
 
   /**
    * Constructor function
