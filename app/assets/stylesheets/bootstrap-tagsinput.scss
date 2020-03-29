@@ -45,8 +45,11 @@
 .bootstrap-tagsinput .tag [data-role="remove"] {
   margin-left: 8px;
   cursor: pointer;
+  background-color: rgb(163, 64, 61);
+  border-radius: 2px;
 }
 .bootstrap-tagsinput .tag [data-role="remove"]:after {
+  // color: black;
   content: "x";
   border: none;
   padding: 0px 2px;
