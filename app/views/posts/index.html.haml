@@ -16,9 +16,9 @@
               .card{id: post.id}
                 %label.m-1
                   - if post.image.present?
-                    %img.card-img-top{src: "#{post.image}"}
+                    %img.card-img-top.img-fluid.rounded{src: "#{post.image}"}
                   - else
-                    %img.card-img-top{src: "/public/noimage.png"}
+                    %img.card-img-top.img-fluid.rounded{src: "/public/noimage.png"}
                   .card-body.event
                     %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                     .event__name 
@@ -32,7 +32,7 @@
                       = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
               - if user_signed_in?
                 .offset-8.col-auto.card
-                  .text-center
+                  .text-center.likes
                     = render partial: '/posts/posts', locals: {post: post}
         = paginate @posts, remote: true
       .new-post.text-center.m-5
