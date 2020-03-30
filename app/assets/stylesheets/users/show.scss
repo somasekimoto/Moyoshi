@@ -1,0 +1,22 @@
+.profile-wrapper{
+  height: 1080px;
+  .cover-image{
+    background-image: url("/assets/noimage.png");
+    background-size: cover;
+    background-position: center, center;
+    height: 320px;
+    position: relative;
+    .profile-photo{
+      position: absolute;
+      top: 280px;
+      left: 10px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .stretched-link{
+    text-decoration: none;
+    color: black;
+  }
+  
+}

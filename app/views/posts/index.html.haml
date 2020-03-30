@@ -18,7 +18,7 @@
                   - if post.image.present?
                     %img.card-img-top.img-fluid.rounded{src: "#{post.image}"}
                   - else
-                    %img.card-img-top.img-fluid.rounded{src: "/public/noimage.png"}
+                    %img.card-img-top.img-fluid.rounded{src: "/assets/noimage.png"}
                   .card-body.event
                     %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                     .event__name 

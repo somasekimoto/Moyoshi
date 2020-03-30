@@ -13,7 +13,7 @@
         = link_to "Moyoshi", "/", class: "app-name__logo text-decoration-none text-center text-white"
       .col.text-left
         - if user_signed_in?
-          = link_to "#{current_user.name}", edit_user_registration_path, class: "edit-user user-btn text-decoration-none mr-3 text-white"
+          = link_to "#{current_user.name}", user_path(current_user.id), class: "edit-user user-btn text-decoration-none mr-3 text-white"
           = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "user-logout user-btn text-decoration-none text-white"
         - else
           = link_to "新規登録", new_user_registration_path, class: "new-user user-btn text-decoration-none mr-3 text-white"

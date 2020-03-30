@@ -2,7 +2,7 @@
   .container
     .row.mt-5
       .col.mt-5.p-5.shadow-lg.card{style: 'width: 18rem;'}
-        %img.col.image{src: "#{@post.image}"}
+        %img.col.image.img-fluid.rounded{src: "#{@post.image}"}
         .title.col.text-center.m-4
           #{@post.title}
         .content.col.text-center.mb-4
@@ -10,11 +10,13 @@
         .name.col.text-right
           -if user_signed_in?
             -if @post.user_id === current_user.id 
-              あなたの投稿
+              あなたのモヨオシ
             - else
-              #{@post.user.name} さんの投稿
+              = link_to "#{@post.user.name}", user_path(@post.user), class: "text-decoration-none text-dark"
+              さんのモヨオシ
           - else
-            #{@post.user.name} さんの投稿
+            = link_to "#{@post.user.name}", user_path(@post.user), class: "text-decoration-none text-dark"
+            さんのモヨオシ
         .date.col.text-right.mb-4
           = l @post.created_at, format: :long
         - if @post.genre_list.count != 0
