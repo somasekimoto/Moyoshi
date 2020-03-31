@@ -6,8 +6,11 @@
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    "https://unpkg.com/swiper/css/swiper.min.css"
+    = javascript_include_tag "https://unpkg.com/swiper/js/swiper.min.js"
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
+    = javascript_include_tag "https://unpkg.com/swiper/js/swiper.min.js"
     %header.navbar.navbar-expand-lg.bg-primary.row.shadow-sm.fixed-top.px-5
       %h5.col-auto.text-left
         = link_to "Moyoshi", "/", class: "app-name__logo text-decoration-none text-center text-white"
