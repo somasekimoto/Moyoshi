@@ -13,7 +13,7 @@ Moyoshi = 催し
 
 現在進行形で、アプリ改善中です。
 - UI/UXの改善
-- 地域別に掲載情報を変更するため、googlemapAPIの導入
+- 地域別に掲載情報を変更するため、geocoderの導入
 - ユーザーページ作成
 
 等々。。
@@ -41,7 +41,7 @@ Moyoshi = 催し
 |ichiro|tes3@ichiro.com|ichiro1|
 |saburo|test4@saburo.com|saburo1|
 
-- URLはこちら http://18.176.131.168/
+- URLはこちら http://www.moyoshi.me/
 
 
 
