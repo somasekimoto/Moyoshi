@@ -7,9 +7,16 @@
 
 Moyoshi = 催し
 
+- URLはこちら http://www.moyoshi.me/
 
 
 このアプリは、催し事やイベントを掲載したり告知したりする掲示板アプリです。
+
+
+### 企画背景: 
+地域のお得情報やイベント情報、個人が開催するワークショップ等を、その地域に住む人や、
+その地域を訪れた人に知ってもらいたいと思いこのアプリを作りました。
+
 
 現在進行形で、アプリ改善中です。
 - UI/UXの改善
@@ -41,7 +48,7 @@ Moyoshi = 催し
 |ichiro|tes3@ichiro.com|ichiro1|
 |saburo|test4@saburo.com|saburo1|
 
-- URLはこちら http://www.moyoshi.me/
+
 
 
 
