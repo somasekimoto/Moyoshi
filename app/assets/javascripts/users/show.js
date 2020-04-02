@@ -1,10 +1,7 @@
 $(function(){
-  
   var mySwiper = new Swiper('.swiper-container', {
-    autoHeight: true,
-    loop: true,
-    freeMode: true,
     slidesPerView: 3,
+    slideToClickedSlide: true,
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
@@ -13,6 +10,12 @@ $(function(){
     navigation: {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev'
+    },
+    breakpoints: {
+      767: {
+        slidesPerView: 1,
+        spaceBetween: 0
+      }
     }
   });
 });

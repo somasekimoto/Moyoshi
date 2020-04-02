@@ -1,8 +1,11 @@
 .bg-info.pb-5
   .container
-    .row.mt-5
-      .col.mt-5.p-5.shadow-lg.card{style: 'width: 18rem;'}
-        %img.col.image.img-fluid.rounded{src: "#{@post.image}"}
+    .row.mt-5.main-row.mx-auto
+      .col.mt-5.p-5.shadow-lg.card.main-card
+        - if @post.image?
+          %img.col.image.img-fluid.rounded{src: "#{@post.image}"}
+        - else
+          %img.col.image.img-fluid.rounded{src: "/assets/noimage.png", style: "height: 500px;"}
         .title.col.text-center.m-4
           #{@post.title}
         .content.col.text-center.mb-4
@@ -32,7 +35,7 @@
               .col.text-left
                 = link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-primary mr-4 px-3'
                   
-                = link_to "削除", post_path, method: :delete, local: true, data: {confirm: "ポスト「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
+                = link_to "削除", post_path, method: :delete, local: true, data: {confirm: "イベント「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
               .btn.col-auto.like.offset-right.text-center
                 = render partial: '/posts/posts', locals: {post: @post}
           - else
@@ -43,22 +46,23 @@
           .row
             .btn.col-auto.like.offset-10
               = render partial: '/posts/posts', locals: {post: @post}
-    .container.text-center.my-5.pt-5.shadow-lg.card
-      - if current_user
-        = form_for [@post, @comment], {class: "row", id: "new_comment"} do |f|
-          = f.text_field :text, placeholder: "コメントを入力", size: "10x20", class: "comment_text col-8 mx-auto rounded"
-          = f.submit "送信", class: "comment_submit col-2 mb-4 rounded"
-      -else
-        %p コメントの投稿には新規登録/ログインが必要です
-      .comments-box.border.mb-4
-        .h3.text-left.p-3.text-info
-          < コメント一覧 >
-        - if @comments
-          .comments.overflow-auto.mw-75.mh-75
-            - @comments.each do |comment|
-              .text-wrap.text-break.row.mx-3
-                %p.col-3
-                  #{comment.user.name}:
-                %p.col-auto.text-left
-                  #{comment.text}
+    .container.text-center.my-5
+      .shadow-lg.card.pt-5.px-3.comment-card.mx-auto
+        - if current_user
+          = form_for [@post, @comment], {class: "row", id: "new_comment"} do |f|
+            = f.text_field :text, placeholder: "コメントを入力", size: "10x20", class: "comment_text col-8 mx-auto rounded"
+            = f.submit "送信", class: "comment_submit col-2 mb-4 rounded"
+        -else
+          %p コメントの投稿には新規登録/ログインが必要です
+        .comments-box.border.mb-4
+          .h3.text-left.p-3.text-info
+            < コメント一覧 >
+          - if @comments
+            .comments.overflow-auto.mw-75.mh-75
+              - @comments.each do |comment|
+                .text-wrap.text-break.row.mx-3
+                  %p.col-3
+                    #{comment.user.name}:
+                  %p.col-auto.text-left
+                    #{comment.text}
   

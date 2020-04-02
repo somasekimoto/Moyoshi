@@ -1,6 +1,6 @@
 .container-fluid.h-100.py-5.bg-info
   .container.px-5.w-100.h-100.bg-info
-    .profile-wrapper.col-auto.bg-light.pt-4.shadow
+    .profile-wrapper.col-auto.bg-light.p-5.mt-5.shadow.rounded
       .cover-image.align-middle.rounded
         -# カバー写真を変更できます
         %img.profile-photo.img-fluid.figure-img.rounded-circle.bg-light{src: "/assets/accountDefault2.png", alt:""}
@@ -9,49 +9,47 @@
           = @user.name
         .col-8
           .row.navbar.navbar
-            .col-3.bg-info.profile-name.text-center.shadow
+            .col-4.bg-info.profile-name.text-center.shadow
               = link_to "基本情報", "#", class: "stretched-link"
-            .col-3.text-center.shadow.bg-primary
+            .col-4.text-center.shadow.bg-primary
               = link_to "参加・応募", "#", class: "stretched-link"
-            .col-3.bg-danger.text-center.shadow
-              - if user_signed_in? && current_user.id == @user.id
-                = link_to "編集", edit_user_registration_path, class: "stretched-link"
-              - else
-                編集できません
-            .col-3.text-center.shadow
+            .col-4.text-center.shadow
               その他
       .user-posts.mt-5
-        = @user.name + "さんのモヨオシ"
-        .swiper-container.swipes.p-2
+        - if user_signed_in? && @user.id == current_user.id
+          あなたのモヨオシ
+        - else
+          = @user.name + "さんのモヨオシ"
+        .swiper-container.p-2.rounded
           .swiper-wrapper.p-1
             - @posts.each do |post| 
-              .events__content.col-sm-6.col-md-4.mb-3
-                .swiper-slide
-                  .card{id: post.id}
-                    %label.m-1
-                      - if post.image.present?
-                        %img.card-img-top.img-fluid.rounded{src: "#{post.image}"}
-                      - else
-                        %img.card-img-top.img-fluid.rounded{src: "/assets/noimage.png"}
-                      .card-body.event
-                        %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-                        .event__name 
-                          #{post.user.name} さん
-                        .text-right
-                          = l post.created_at, format: :long
-                  .card.col-auto
-                    .text-left
-                      - post.genre_list.each do |genre|
-                        .badge.badge-primary{data:{role: "tagsinput"}}
-                          = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
-                  - if user_signed_in?
-                    .offset-8.col-auto.card
-                      .text-center.likes
-                        = render partial: '/posts/posts', locals: {post: post}
-          .swiper-button-prev
-          .swiper-button-next
-          .swiper-pagination
-= javascript_include_tag "https://unpkg.com/swiper/js/swiper.min.js"
+              .swiper-slide.events__content.col-sm-6.col-md-4.mb-3
+                .card{id: post.id}
+                  %label.m-1
+                    - if post.image.present?
+                      %img.card-img-top.img-fluid.rounded{src: "#{post.image}"}
+                    - else
+                      %img.card-img-top.img-fluid.rounded{src: "/assets/noimage.png"}
+                    .card-body.event
+                      %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
+                      .event__name 
+                        #{post.user.name} さん
+                      .text-right
+                        = l post.created_at, format: :long
+                .card.col-auto
+                  .text-left
+                    - post.genre_list.each do |genre|
+                      .badge.badge-primary{data:{role: "tagsinput"}}
+                        = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
+                - if user_signed_in?
+                  .offset-8.col-auto.card
+                    .text-center.likes
+                      = render partial: '/posts/posts', locals: {post: post}
+          - if @posts.count >= 4
+            .swiper-button-prev
+            .swiper-button-next
+            .swiper-pagination
+
 
 
 

@@ -16,9 +16,10 @@
               .card{id: post.id}
                 %label.m-1
                   - if post.image.present?
-                    %img.card-img-top.img-fluid.rounded{src: "#{post.image}"}
+                    = image_tag asset_path("#{post.image}", class: "card-img-top img-fluid rounded")
                   - else
-                    %img.card-img-top.img-fluid.rounded{src: "/assets/noimage.png"}
+                    -# %img.card-img-top.img-fluid.rounded{src: "/assets/noimage.png"}
+                    = image_tag("noimage.png", class: "card-img-top img-fluid rounded")
                   .card-body.event
                     %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                     .event__name 
