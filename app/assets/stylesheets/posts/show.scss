@@ -1,9 +1,15 @@
-.main-row{
+.main-card{
   width: 800px;
-  .img-fluid{
+  .card-img-top{
     width: 750px;
     height: 300px;
   }
+  // .default-img{
+  //   width: 500px;
+  //   margin: 0 auto;
+  //   height: 300px;
+  //   display: block;
+  // }
 }
 
 .comment-card{

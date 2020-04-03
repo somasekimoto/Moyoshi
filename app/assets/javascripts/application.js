@@ -13,7 +13,6 @@
 //= require jquery
 //= require rails-ujs
 //= require popper
-//= require bootstrap-sprockets
 //= require bootstrap
 //= require activestorage
 //= require bootstrap-tagsinput

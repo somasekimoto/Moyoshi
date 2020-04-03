@@ -1,20 +1,25 @@
 .container-fluid.h-100.py-5.bg-info
-  .container.px-5.w-100.h-100.bg-info
+  .container.w-100.h-100
     .profile-wrapper.col-auto.bg-light.p-5.mt-5.shadow.rounded
       .cover-image.align-middle.rounded
         -# カバー写真を変更できます
-        %img.profile-photo.img-fluid.figure-img.rounded-circle.bg-light{src: "/assets/accountDefault2.png", alt:""}
+        = image_tag("accountDefault2.png" ,class: "profile-photo img-fluid figure-img rounded-circle bg-light")
       .row
         .h3.col-2.offset-2.mt-3
           = @user.name
         .col-8
-          .row.navbar.navbar
-            .col-4.bg-info.profile-name.text-center.shadow
-              = link_to "基本情報", "#", class: "stretched-link"
-            .col-4.text-center.shadow.bg-primary
-              = link_to "参加・応募", "#", class: "stretched-link"
-            .col-4.text-center.shadow
-              その他
+            
+          .mt-3.float-right.col-3.text-center.shadow.btn.btn-info.dropdown-toggle#dropdownMenuButton{data: {toggle: "dropdown"}, aria: {haspopup: "true", expanded: "false"}}
+            設定
+          .dropdown-menu.dropdown-menu-right{aria: {labelledby: "dropdownMenuButton"}}
+            - if user_signed_in? && @user.id == current_user.id
+              .text-decoration-none.dropdown-item= link_to "プロフィール編集", edit_user_registration_path(@user)
+            - else
+              .text-decoration-none.dropdown-item= link_to "ダイレクトメッセージ", "#"
+            - if user_signed_in? && @user.id == current_user.id
+              .text-decoration-none.dropdown-item= link_to "ログアウト", destroy_user_session_path, method: :delete
+            - else
+              .text-decoration-none.dropdown-item= link_to "通報する", "#"
       .user-posts.mt-5
         - if user_signed_in? && @user.id == current_user.id
           あなたのモヨオシ
@@ -27,9 +32,9 @@
                 .card{id: post.id}
                   %label.m-1
                     - if post.image.present?
-                      %img.card-img-top.img-fluid.rounded{src: "#{post.image}"}
+                      = image_tag("#{post.image}", class: "card-img-top img-fluid rounded")
                     - else
-                      %img.card-img-top.img-fluid.rounded{src: "/assets/noimage.png"}
+                      = image_tag("noimage.jpeg", class: "col card-img-top img-fluid rounded")
                     .card-body.event
                       %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                       .event__name 
