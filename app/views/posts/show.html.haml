@@ -1,62 +1,67 @@
-.bg-info.pb-5
-  .container
-    .row.mt-5
-      .col.mt-5.p-5.shadow-lg.card{style: 'width: 18rem;'}
-        %img.col.image{src: "#{@post.image}"}
-        .title.col.text-center.m-4
-          #{@post.title}
-        .content.col.text-center.mb-4
-          #{@post.content}
-        .name.col.text-right
-          -if user_signed_in?
-            -if @post.user_id === current_user.id 
-              あなたの投稿
-            - else
-              #{@post.user.name} さんの投稿
-          - else
-            #{@post.user.name} さんの投稿
-        .date.col.text-right.mb-4
-          = l @post.created_at, format: :long
-        - if @post.genre_list.count != 0
-          %p
-            .genre
-              ジャンル: 
-              - @post.genre_list.group_by{|i| i}.keys.each do |tag|
-                .badge.badge-primary
-                  = link_to "#{tag}", tag_path(tag), class: "text-white text-decoration-none"
+.container-fluid.pb-5
+  .container.pt-5
+    .mt-5.p-5.shadow-lg.card.main-card.mx-auto
+      - if @post.image?
+        = image_tag("#{@post.image}", class: "col card-img-top img-fluid rounded")
+      - else
+        = image_tag("noimage.jpeg", class: "col card-img-top img-fluid rounded", style: "height: 400px;")
+      .title.col.text-center.m-4
+        #{@post.title}
+      .content.col.text-center.mb-4
+        #{@post.content}
+      .name.col.text-right
         -if user_signed_in?
-          - if @post.user_id === current_user.id 
-            .row
-              .col.text-left
-                = link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-primary mr-4 px-3'
-                  
-                = link_to "削除", post_path, method: :delete, local: true, data: {confirm: "ポスト「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
-              .btn.col-auto.like.offset-right.text-center
-                = render partial: '/posts/posts', locals: {post: @post}
+          -if @post.user_id === current_user.id 
+            あなたのモヨオシ
           - else
-            .row
-              .btn.col-auto.like.offset-10
-                = render partial: '/posts/posts', locals: {post: @post}
+            = link_to "#{@post.user.name}", user_path(@post.user), class: "text-decoration-none text-dark"
+            さんのモヨオシ
+        - else
+          = link_to "#{@post.user.name}", user_path(@post.user), class: "text-decoration-none text-dark"
+          さんのモヨオシ
+      .date.col.text-right.mb-4
+        = l @post.created_at, format: :long
+      - if @post.genre_list.count != 0
+        %p
+          .genre
+            ジャンル: 
+            - @post.genre_list.group_by{|i| i}.keys.each do |tag|
+              .badge.badge-primary
+                = link_to "#{tag}", tag_path(tag), class: "text-white text-decoration-none"
+      -if user_signed_in?
+        - if @post.user_id === current_user.id 
+          .row
+            .col.text-left
+              = link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-primary mr-4 px-3'
+                
+              = link_to "削除", post_path, method: :delete, local: true, data: {confirm: "イベント「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
+            .btn.col-auto.like.offset-right.text-center
+              = render partial: '/posts/posts', locals: {post: @post}
         - else
           .row
             .btn.col-auto.like.offset-10
               = render partial: '/posts/posts', locals: {post: @post}
-    .container.text-center.my-5.pt-5.shadow-lg.card
-      - if current_user
-        = form_for [@post, @comment], {class: "row", id: "new_comment"} do |f|
-          = f.text_field :text, placeholder: "コメントを入力", size: "10x20", class: "comment_text col-8 mx-auto rounded"
-          = f.submit "送信", class: "comment_submit col-2 mb-4 rounded"
-      -else
-        %p コメントの投稿には新規登録/ログインが必要です
-      .comments-box.border.mb-4
-        .h3.text-left.p-3.text-info
-          < コメント一覧 >
-        - if @comments
-          .comments.overflow-auto.mw-75.mh-75
-            - @comments.each do |comment|
-              .text-wrap.text-break.row.mx-3
-                %p.col-3
-                  #{comment.user.name}:
-                %p.col-auto.text-left
-                  #{comment.text}
+      - else
+        .row
+          .btn.col-auto.like.offset-10
+            = render partial: '/posts/posts', locals: {post: @post}
+    .container.text-center.my-5
+      .shadow-lg.card.pt-5.px-3.comment-card.mx-auto
+        - if current_user
+          = form_for [@post, @comment], {class: "row", id: "new_comment"} do |f|
+            = f.text_field :text, placeholder: "コメントを入力", size: "10x20", class: "comment_text col-8 mx-auto rounded"
+            = f.submit "送信", class: "comment_submit col-2 mb-4 rounded"
+        -else
+          %p コメントの投稿には新規登録/ログインが必要です
+        .comments-box.border.mb-4
+          .h3.text-left.p-3.text-info
+            < コメント一覧 >
+          - if @comments
+            .comments.overflow-auto.mw-75.mh-75
+              - @comments.each do |comment|
+                .text-wrap.text-break.row.mx-3
+                  %p.col-3
+                    #{comment.user.name}:
+                  %p.col-auto.text-left
+                    #{comment.text}
   

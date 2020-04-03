@@ -1,0 +1,40 @@
+.profile-wrapper{
+  height: 100%;
+  .cover-image{
+    background-image: url("/assets/noimage.jpeg");
+    background-size: cover;
+    background-position: center, center;
+    height: 320px;
+    position: relative;
+    .profile-photo{
+      position: absolute;
+      top: 280px;
+      left: 10px;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .stretched-link{
+    text-decoration: none;
+    color: black;
+  }
+  
+  .swiper-container{
+    background-color: rgba(0, 0, 0, 0.5);
+    .swiper-wrapper{
+      .events__content{
+        .swipe-slide{
+
+        }
+      }
+    }
+    .swiper-button-prev{
+
+    }
+    .swiper-button-next{
+      color: blanchedalmond;
+    }
+    .swiper-pagination{
+    }
+  }
+}

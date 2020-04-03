@@ -1,5 +1,5 @@
-.container-fluid.bg-info
-  .container.bg-info.pt-5
+.container-fluid.wrapper
+  .container.pt-5
     %section.form-group.w-100.row
       .search-form.d-sm-inline-block.mx-auto
         = form_with(url: posts_searches_path, local: true, method: :get, id: "forms") do |f|
@@ -16,9 +16,10 @@
               .card{id: post.id}
                 %label.m-1
                   - if post.image.present?
-                    %img.card-img-top{src: "#{post.image}"}
+                    = image_tag asset_path("#{post.image}", class: "card-img-top img-fluid rounded")
                   - else
-                    %img.card-img-top{src: "/public/noimage.png"}
+                    -# %img.card-img-top.img-fluid.rounded{src: "/assets/noimage.png"}
+                    = image_tag("noimage.jpeg", class: "card-img-top img-fluid rounded")
                   .card-body.event
                     %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                     .event__name 
@@ -32,7 +33,7 @@
                       = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
               - if user_signed_in?
                 .offset-8.col-auto.card
-                  .text-center
+                  .text-center.likes
                     = render partial: '/posts/posts', locals: {post: post}
         = paginate @posts, remote: true
       .new-post.text-center.m-5
