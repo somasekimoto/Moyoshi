@@ -8,11 +8,8 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag    "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css"
     = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"
-    
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
-    
   %body
-    
     %header.navbar.navbar-expand-lg.bg-primary.row.shadow-sm.fixed-top.px-5
       %h5.col-auto.text-left
         = link_to "Moyoshi", "/", class: "app-name__logo text-decoration-none text-center text-white"
@@ -23,10 +20,7 @@
         - else
           = link_to "新規登録", new_user_registration_path, class: "new-user user-btn text-decoration-none mr-3 text-white"
           = link_to "ログイン", new_user_session_path, class: "user-login user-btn text-decoration-none text-white"
-    
     = yield
-
-
     %footer.bg-primary.sticky-bottom
       .text-center.py-3
         = link_to "トップに戻る", root_path, class: "text-white text-decoration-none"

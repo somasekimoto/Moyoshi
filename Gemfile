@@ -83,6 +83,9 @@ gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'kaminari'
 gem 'mysql2'
+gem 'goodcheck'
+gem 'querly'
+gem "thor"
 
 group :production do
   gem 'unicorn'

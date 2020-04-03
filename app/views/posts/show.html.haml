@@ -10,8 +10,8 @@
       .content.col.text-center.mb-4
         #{@post.content}
       .name.col.text-right
-        -if user_signed_in?
-          -if @post.user_id === current_user.id 
+        - if user_signed_in?
+          - if @post.user_id === current_user.id 
             あなたのモヨオシ
           - else
             = link_to "#{@post.user.name}", user_path(@post.user), class: "text-decoration-none text-dark"
@@ -28,12 +28,11 @@
             - @post.genre_list.group_by{|i| i}.keys.each do |tag|
               .badge.badge-primary
                 = link_to "#{tag}", tag_path(tag), class: "text-white text-decoration-none"
-      -if user_signed_in?
-        - if @post.user_id === current_user.id 
+      - if user_signed_in?
+        - if @post.user_id === current_user.id
           .row
             .col.text-left
               = link_to "編集", edit_post_path(@post.id), class: 'btn btn-outline-primary mr-4 px-3'
-                
               = link_to "削除", post_path, method: :delete, local: true, data: {confirm: "イベント「#{@post.title}」を削除します。よろしいですか？"}, class: 'btn btn-outline-danger px-3'
             .btn.col-auto.like.offset-right.text-center
               = render partial: '/posts/posts', locals: {post: @post}
@@ -51,7 +50,7 @@
           = form_for [@post, @comment], {class: "row", id: "new_comment"} do |f|
             = f.text_field :text, placeholder: "コメントを入力", size: "10x20", class: "comment_text col-8 mx-auto rounded"
             = f.submit "送信", class: "comment_submit col-2 mb-4 rounded"
-        -else
+        - else
           %p コメントの投稿には新規登録/ログインが必要です
         .comments-box.border.mb-4
           .h3.text-left.p-3.text-info
