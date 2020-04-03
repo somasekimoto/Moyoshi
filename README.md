@@ -2,7 +2,8 @@
 
 # About this App Moyoshi
 
-[![Image from Gyazo](https://i.gyazo.com/3a9f856a63d2c9ee2b711b7c395e0770.jpg)](https://gyazo.com/3a9f856a63d2c9ee2b711b7c395e0770)
+[![Image from Gyazo](https://i.gyazo.com/31ac599b9e0235f9bc8428fbd45626f6.jpg)](https://gyazo.com/31ac599b9e0235f9bc8428fbd45626f6)
+[![Image from Gyazo](https://i.gyazo.com/ff78f180e87316fe6542c5f0a5432b7d.jpg)](https://gyazo.com/ff78f180e87316fe6542c5f0a5432b7d)
 
 
 Moyoshi = 催し
@@ -18,10 +19,21 @@ Moyoshi = 催し
 その地域を訪れた人に知ってもらいたいと思いこのアプリを作りました。
 
 
-現在進行形で、アプリ改善中です。
+現在も追加機能を実装中です。
+
+実装済機能
+- ログイン機能
+- 投稿機能 
+- いいね機能
+- コメント機能
+- タグ機能
+- 検索機能
+
+今後実装予定の機能　
 - UI/UXの改善
 - 地域別に掲載情報を変更するため、geocoderの導入
-- ユーザーページ作成
+- ユーザーページ
+- フォローフォロワー機能
 
 等々。。
 
