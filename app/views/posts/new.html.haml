@@ -18,6 +18,11 @@
               = icon('fas fa-2x', 'image',)
               = f.file_field :image, class: "post-form__image--file d-none"
           .form-group.row.mb-4
+            = f.label :address, "場所：", class: "col text-white"
+            = f.text_field :prefecture, class: "post-form__address form-control col-2"
+            = f.text_field :city, class: "post-form__address form-control col-2"
+            = f.text_field :town, class: "post-form__address form-control col-2"
+          .form-group.row.mb-4
             = f.label :genre_list, "ジャンル：  ", class: "text-white"
             = f.text_field :genre_list, placeholder: "ジャンル(５個まで)", value: @post.genre_list.join(','), class: "form-control", data:{role: "tagsinput"}
           .row.pb-3.offset-5

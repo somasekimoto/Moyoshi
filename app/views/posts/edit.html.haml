@@ -14,9 +14,17 @@
               内容：
             = f.text_area :content, placeholder: "詳しい内容を記入してください", size: "20x10", class: "post-form__content col form-control"
           .form-group.row.mb-4
-            = f.label :image, "画像", class: "post-form__image col offset-1 text-white" do
+            = f.label :image, class: "post-form__image col offset-1 text-white" do
+              画像：
               = icon('fas fa-2x', 'image',)
               = f.file_field :image, class: "post-form__image--file d-none"
+          .form-group.row.mb-4
+            = f.label :prefecture, "都道府県", class: "col-2 text-white" do
+              = f.text_field :prefecture, class: "post-form__address form-control"
+            = f.label :city, "市区町村", class: "col-2 text-white" do
+              = f.text_field :city, class: "post-form__address form-control "
+            = f.label :town, "町名", class: "col-2 text-white" do
+              = f.text_field :town, class: "post-form__address form-control "
           .form-group.row.mb-4
             = f.label :genre_list, "ジャンル：  ", class: "text-white"
             = f.text_field :genre_list, value: @post.genre_list.join(','), class: "form-control", data:{role: "tagsinput"}

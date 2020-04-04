@@ -86,6 +86,8 @@ gem 'mysql2'
 gem 'goodcheck'
 gem 'querly'
 gem "thor"
+gem 'geocoder'
+
 
 group :production do
   gem 'unicorn'

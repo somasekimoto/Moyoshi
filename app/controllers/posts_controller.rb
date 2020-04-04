@@ -2,8 +2,10 @@ class PostsController < ApplicationController
   def index
     if params[:tag]
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC').tagged_with(params[:tag])
+      @location = Geocoder.search("東京タワー")
     else
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
+      @location = Geocoder.search("東京タワー")
     end
     respond_to do |format|
       format.html
@@ -16,6 +18,7 @@ class PostsController < ApplicationController
   end
 
   def create
+
     @post = Post.create(post_params)
     if @post.save
       redirect_to root_path, success: "投稿を作成しました"
@@ -48,6 +51,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content, :image, :title, :genre_list).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :image, :title, :address, :genre_list).merge(user_id: current_user.id)
   end
 end
