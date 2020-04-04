@@ -11,6 +11,12 @@ class Post < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
+  def thumbnail
+    return self.image.variant(resize: '50x50')
+  end
+
+  @post_genres = Post.all.includes(:user).order('created_at DESC').tagged_with(:tag)
+
   geocoded_by :address
 
   attr_writer :prefecture, :city, :town
@@ -26,7 +32,7 @@ class Post < ApplicationRecord
   end
 
   def town
-    @town || self.address.split(" ").last if self.address.present?
+    @town || self.address.split(" ").third if self.address.present?
   end
 
   def set_address
@@ -35,10 +41,12 @@ class Post < ApplicationRecord
 
 
   after_validation :geocode, if: Proc.new { |a| a.address_changed? }
-  
-  def thumbnail
-    return self.image.variant(resize: '50x50')
+  class << self
+    def within_box(distance, latitude, longitude)
+      distance = distance
+      center_point = [latitude, longitude]
+      box = Geocoder::Calculations.bounding_box(center_point, distance)
+      self.within_bounding_box(box)
+    end
   end
-
-  @post_genres = Post.all.includes(:user).order('created_at DESC').tagged_with(:tag)
 end

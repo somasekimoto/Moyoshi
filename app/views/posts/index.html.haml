@@ -1,6 +1,7 @@
 .container-fluid
   .container.pt-5
-    = image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.first.coordinates[0]}%2C#{@location.first.coordinates[1]}"
+    .btn.btn-danger{onClick: "getPosition();"}
+      現在地
 
     %section.form-group.w-100.row
       .search-form.d-sm-inline-block.mx-auto

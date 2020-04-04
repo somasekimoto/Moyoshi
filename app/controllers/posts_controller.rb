@@ -7,18 +7,26 @@ class PostsController < ApplicationController
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
       @location = Geocoder.search("東京タワー")
     end
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
+    @locations = Post.within_box(10000, latitude, longitude)
     respond_to do |format|
       format.html
       format.js
     end
   end
 
+  # def search_location
+  #   latitude = params[:latitude].to_f
+  #   longitude = params[:longitude].to_f
+  #   @locations = Post.within_box(0.310686, latitude, longitude)
+  # end
+
   def new
     @post = Post.new
   end
 
   def create
-
     @post = Post.create(post_params)
     if @post.save
       redirect_to root_path, success: "投稿を作成しました"
@@ -51,6 +59,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content, :image, :title, :address, :genre_list).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :image, :title, :prefecture, :city, :town, :genre_list).merge(user_id: current_user.id)
   end
 end

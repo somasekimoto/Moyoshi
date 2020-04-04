@@ -21,6 +21,13 @@
           さんのモヨオシ
       .date.col.text-right.mb-4
         = l @post.created_at, format: :long
+      .place.row
+        .col.text-right
+          開催場所：
+          - if @post.address.present?
+            = @post.address
+          - else
+            指定なし
       - if @post.genre_list.count != 0
         %p
           .genre
