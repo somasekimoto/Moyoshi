@@ -1,5 +1,5 @@
 .container-fluid.bg-info.pb-4
-  .container.bg-info.pt-5
+  .container.pt-5
     %section.form-group.w-100.row
       .search-form.d-sm-inline-block.mx-auto
         = form_with(url: posts_searches_path, local: true, method: :get) do |f|
@@ -16,9 +16,9 @@
               .card{id: post.id}
                 %label.m-1
                   - if post.image.present?
-                    %img.card-img-top{src: "#{post.image}"}
+                    = image_tag asset_path("#{post.image}"), class: "card-img-top img-fluid rounded"
                   - else
-                    %img.card-img-top{src: "/public/noimage.png"}
+                    = image_tag asset_path("noimage.jpeg"), class: "card-img-top img-fluid rounded"
                   .card-body.event
                     %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                     .event__name 
@@ -42,7 +42,7 @@
           .row
           = link_to "新規登録", new_user_registration_path, class: "new-post--btn btn-primary p-3 m-1 mr-4 text-decoration-none rounded"
           = link_to "ログイン", new_user_session_path, class: "new-post--btn btn-secondary p-3 m-1 text-decoration-none rounded"
-    %section.genres
+    %section.genres.pb-5
       .container.bg-white.p-1.rounded
         %h2.m-1.pt-3.text-center.text-secondary
           ジャンルから選ぶ

@@ -2,12 +2,9 @@ class PostsController < ApplicationController
   def index
     if params[:tag]
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC').tagged_with(params[:tag])
-      
     else
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
-      
     end
-    
     respond_to do |format|
       format.html
       format.js
