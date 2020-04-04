@@ -8,7 +8,7 @@
 
 Moyoshi = 催し
 
-- URLはこちら http://www.moyoshi.me/
+- URLはこちら https://www.moyoshi.me/
 
 
 このアプリは、催し事やイベントを掲載したり告知したりする掲示板アプリです。
