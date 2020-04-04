@@ -6,15 +6,27 @@
 [![Image from Gyazo](https://i.gyazo.com/ff78f180e87316fe6542c5f0a5432b7d.jpg)](https://gyazo.com/ff78f180e87316fe6542c5f0a5432b7d)
 
 
-Moyoshi = 催し
+## URL 
 
-- URLはこちら https://www.moyoshi.me/
+https://www.moyoshi.me/
 
+### 既存ユーザー
 
-このアプリは、催し事やイベントを掲載したり告知したりする掲示板アプリです。
+|name|email|password|
+|------|----|-------|
+|taro|t1@taro.com|taro123|
+|jiro|te2@jiro.com|jiro123|
+|ichiro|tes3@ichiro.com|ichiro1|
+|saburo|test4@saburo.com|saburo1|
+
 
 
 ### 企画背景: 
+
+Moyoshi = 催し
+
+このアプリは、催し事やイベントを掲載したり告知したりする掲示板アプリです。
+
 地域のお得情報やイベント情報、個人が開催するワークショップ等を、その地域に住む人や、
 その地域を訪れた人に知ってもらいたいと思いこのアプリを作りました。
 
@@ -49,23 +61,6 @@ Moyoshi = 催し
 - コメント機能
 - タグ機能
 - 検索機能
-
-
-### 既存ユーザー
-
-|name|email|password|
-|------|----|-------|
-|taro|t1@taro.com|taro123|
-|jiro|te2@jiro.com|jiro123|
-|ichiro|tes3@ichiro.com|ichiro1|
-|saburo|test4@saburo.com|saburo1|
-
-
-
-
-
-
-
 
 
 
