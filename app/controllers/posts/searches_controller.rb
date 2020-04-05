@@ -1,22 +1,16 @@
 class Posts::SearchesController < ApplicationController
   def index
-    keywords = params[:keyword].split(/[[:blank:]]+/).select(&:present?)
-    negative_keywords, positive_keywords =
-    keywords.partition {|keyword| keyword.start_with?("-") }
-
-    @posts = Post
-
-    positive_keywords.each do |keyword|
-      @posts = @posts.where("title LIKE ? OR content LIKE ?", "%#{keyword}%", "%#{keyword}%").order('created_at DESC').page(params[:page]).per(3).all
+    if params[:keyword].present?
+      @posts = Post.search(params[:keyword]).page(params[:page]).per(3).all.include(:user)
     end
-
-    negative_keywords.each {|word| word.slice!(/^-/) }
-
-    negative_keywords.each do |keyword|
-      next if keyword.blank?
-      @posts = @posts.where.not("title LIKE ? OR content LIKE ?", "%#{keyword}%", "%#{keyword}%").order('created_at DESC').page(params[:page]).per(3).all
+    latitude = params[:latitude].to_f
+    longitude = params[:longitude].to_f
+    @locations = Post.within_box(10000, latitude, longitude)
+    if @locations.empty?
+      @posts = @locations.page(params[:page]).per(3).all.includes(:user)
+    else
+      @posts = Post.all.page(params[:page]).per(3).includes(:user)
     end
-
     respond_to do |format|
       format.html
       format.js

@@ -2,7 +2,7 @@
 function getPosition(){
   navigator.geolocation.getCurrentPosition(
     function(position){
-      window.location.href = "/?latitude="+position.coords.latitude+"&longitude"+position.coords.longitude
+      window.location.href = "/posts/searches?latitude="+position.coords.latitude+"&longitude"+position.coords.longitude
     }, 
     function(error){
       switch(error.code) {

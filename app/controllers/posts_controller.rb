@@ -7,20 +7,12 @@ class PostsController < ApplicationController
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
       @location = Geocoder.search("東京タワー")
     end
-    latitude = params[:latitude].to_f
-    longitude = params[:longitude].to_f
-    @locations = Post.within_box(10000, latitude, longitude)
+    
     respond_to do |format|
       format.html
       format.js
     end
   end
-
-  # def search_location
-  #   latitude = params[:latitude].to_f
-  #   longitude = params[:longitude].to_f
-  #   @locations = Post.within_box(0.310686, latitude, longitude)
-  # end
 
   def new
     @post = Post.new
