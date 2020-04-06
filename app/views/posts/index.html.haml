@@ -6,7 +6,8 @@
           .input-group.mt-5.mx-auto.col-auto
             = f.text_field :keyword, placeholder: "投稿を検索する", class: "rounded search-input col-auto"
             = f.submit "検索", class: "rounded btn btn-primary text-white fas fa-search  p-3"
-            .btn.btn-danger{onClick: "getPosition();"}
+          .col-auto.mt-3.mx-auto
+            .location-search.text-white.btn{onClick: "getPosition();"}
               近くのモヨオシを探す
     %section.events.px-5.pb-5
       .events__text.text-white.m-5.text-center.h3
@@ -24,8 +25,14 @@
                     %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                     .event__name 
                       #{post.user.name} さん
-                    .text-right
+                    .place.text-right
+                      - if post.address.present?
+                        = post.address
+                      - else
+                        指定なし
+                    .post-date.text-right
                       = l post.created_at, format: :long
+                      に投稿
               .card.col-auto
                 .text-left
                   - post.genre_list.each do |genre|

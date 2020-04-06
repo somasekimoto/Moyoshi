@@ -2,6 +2,18 @@
   background-image: image-url("topback.jpeg");
   background-size: cover;
 
+  .location-search{
+    background-color: rgb(94, 96, 102);
+  }
+
+  .location-search:hover{
+    opacity: 0.7;
+  }
+
+  .post-date{
+    opacity: 0.6;
+  }
+
   .card-img-top{
     height: 240px;
   }

@@ -9,12 +9,14 @@
             .form-group.row.mb-3.text-center
               .text-white
                 タイトル：
-              = f.text_field :title, class: "form-control post-form__title col-6"
+              = f.text_field :title, class: "ml-3 form-control post-form__title col-6"
             .form-group.row.mb-3
               .text-white
                 内容：
-              = f.text_area :content, placeholder: "詳しい内容を記入してください", size: "20x10", class: "post-form__content col form-control"
+              = f.text_area :content, placeholder: "詳しい内容を記入してください", size: "20x10", class: "ml-5 post-form__content col form-control"
             .form-group.row.mb-4
+              .text-white
+                画像：
               = f.label :image, "画像", class: "post-form__image col offset-1 text-white" do
                 = icon('fas fa-2x', 'image',)
                 = f.file_field :image, class: "post-form__image--file d-none"

@@ -19,8 +19,9 @@
         - else
           = link_to "#{@post.user.name}", user_path(@post.user), class: "text-decoration-none text-dark"
           さんのモヨオシ
-      .date.col.text-right.mb-4
+      .post-date.col.text-right.mb-4
         = l @post.created_at, format: :long
+        に投稿
       .place.row
         .col.text-right
           開催場所：

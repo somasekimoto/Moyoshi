@@ -7,8 +7,8 @@ class Posts::SearchesController < ApplicationController
     longitude = params[:longitude].to_f
     @locations = Post.within_box(100000, latitude, longitude)
     unless @locations.empty?
-      center_point = [latitude, longitude]
-      near_locations = @locations.sort_by{|l| l.distance_to(center_point)}
+      @center_point = [latitude, longitude]
+      near_locations = @locations.sort_by{|l| l.distance_to(@center_point)}
       @posts = Kaminari.paginate_array(near_locations).page(params[:page]).per(3)
     else
       @posts = Post.all.page(params[:page]).per(3).includes(:user)

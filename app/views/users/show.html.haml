@@ -40,8 +40,14 @@
                       %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
                       .event__name
                         #{post.user.name} さん
-                      .text-right
+                      .place.text-right
+                        - if post.address.present?
+                          = post.address
+                        - else
+                          指定なし
+                      .post-date.text-right
                         = l post.created_at, format: :long
+                        に投稿
                 .card.col-auto
                   .text-left
                     - post.genre_list.each do |genre|
