@@ -2,10 +2,8 @@ class PostsController < ApplicationController
   def index
     if params[:tag]
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC').tagged_with(params[:tag])
-      @location = Geocoder.search("東京タワー")
     else
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
-      @location = Geocoder.search("東京タワー")
     end
     
     respond_to do |format|

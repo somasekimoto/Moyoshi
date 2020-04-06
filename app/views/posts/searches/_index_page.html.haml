@@ -1,25 +1,25 @@
-.events__wrapper.row
-  - @posts.each do |post| 
-    .events__content.col-sm-6.col-md-4.mb-3
-      .card{id: post.id}
-        %label.m-1
-          - if post.image
-            %img.card-img-top{src: "#{post.image}"}
-          - else
-            %img.card-img-top{src: "/public/noimage.jpeg"}
-          .card-body.event
-            %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-            .event__name 
-              #{post.user.name} さん
-            .text-right
-              = l post.created_at, format: :long
-      .card.col-auto
-        .text-left
-          - post.genre_list.each do |genre|
-            .badge.badge-primary{data:{role: "tagsinput"}}
-              = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
-      - if user_signed_in?
-        .offset-8.col-auto.card
-          .text-center
-            = render partial: '/posts/posts', locals: {post: post}
-= paginate @posts, remote: true
+-# .events__wrapper.row
+-#   - @posts.each do |post| 
+-#     .events__content.col-sm-6.col-md-4.mb-3
+-#       .card{id: post.id}
+-#         %label.m-1
+-#           - if post.image
+-#             %img.card-img-top{src: "#{post.image}"}
+-#           - else
+-#             %img.card-img-top{src: "/public/noimage.jpeg"}
+-#           .card-body.event
+-#             %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
+-#             .event__name 
+-#               #{post.user.name} さん
+-#             .text-right
+-#               = l post.created_at, format: :long
+-#       .card.col-auto
+-#         .text-left
+-#           - post.genre_list.each do |genre|
+-#             .badge.badge-primary{data:{role: "tagsinput"}}
+-#               = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
+-#       - if user_signed_in?
+-#         .offset-8.col-auto.card
+-#           .text-center
+-#             = render partial: '/posts/posts', locals: {post: post}
+-# = paginate @posts, remote: true
