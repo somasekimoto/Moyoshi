@@ -5,7 +5,8 @@ class PostsController < ApplicationController
     else
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
     end
-    
+    tags = Post.tag_counts_on(:genres).order('count DESC')
+    @tags_excluded = tags.reject{|t| t.name == "ボランティア" || t.name == "勉強会" || t.name == "セール" || t.name == "ソーシャル" }
     respond_to do |format|
       format.html
       format.js

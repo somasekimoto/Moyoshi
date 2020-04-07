@@ -1,10 +1,6 @@
 .events__wrapper.row
   - @posts.each do |post| 
     .events__content.col-sm-6.col-md-4.mb-3
-      .h3.text-white.text-center
-        現在地から
-        = post.distance_to(@center_point).round
-        km
       .card{id: post.id}
         %label.m-1
           - if post.image.present?
@@ -19,9 +15,9 @@
               - if post.address.present?
                 = post.address
               - else
-                指定なし
-            .text-right
-              = render partial: "/posts/time", locals: { post: post }
+                場所不明
+            .post-date.text-right
+              = render partial: "time", locals: { post: post }
               に投稿
       .card.col-auto
         .text-left

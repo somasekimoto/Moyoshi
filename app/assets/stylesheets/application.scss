@@ -21,6 +21,7 @@
 
 .container-fluid{
   background-image: image-url("topback.jpeg");
+  background-size: cover;
   .field_with_errors {
     display: contents;
   }
