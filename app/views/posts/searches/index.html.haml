@@ -7,7 +7,7 @@
             = f.text_field :keyword, placeholder: "投稿を検索する", class: "rounded search-input col-auto"
             = f.submit "検索", class: "rounded btn btn-primary text-white fas fa-search  p-3"
           .col-auto.mt-3.mx-auto
-            .location-search.text-white.btn{onClick: "getPosition();"}
+            .location-search.text-white.btn{ onClick: "getPosition();" }
               近くのモヨオシを探す
     %section.events.px-5.pb-5
       .events__text.text-white.m-5.text-center.h3
@@ -29,7 +29,7 @@
                       = image_tag asset_path("noimage.jpeg"), class: "card-img-top img-fluid rounded"
                     .card-body.event
                       %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-                      .event__name 
+                      .event__name
                         #{post.user.name} さん
                       .place.text-right
                         - if post.address.present?

@@ -2,7 +2,7 @@
   .events__wrapper.row
     - @posts.each do |post| 
       .events__content.col-sm-6.col-md-4.mb-3
-        .card{id: post.id}
+        .card{ id: post.id }
           %label.m-1
             - if post.image.present?
               = image_tag asset_path("#{post.image}"), class: "card-img-top img-fluid rounded"
@@ -10,7 +10,7 @@
               = image_tag asset_path("noimage.jpeg"), class: "card-img-top img-fluid rounded"
             .card-body.event
               %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-              .event__name 
+              .event__name
                 #{post.user.name} さん
               .place.text-right
                 - if post.address.present?
@@ -23,7 +23,7 @@
         .card.col-auto
           .text-left
             - post.genre_list.each do |genre|
-              .badge.badge-primary{data:{role: "tagsinput"}}
+              .badge.badge-primary{ data:{ role: "tagsinput" } }
                 = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
         - if user_signed_in?
           .offset-8.col-auto.card

@@ -7,16 +7,16 @@
             = f.text_field :keyword, placeholder: "投稿を検索する", class: "rounded search-input col-auto"
             = f.submit "検索", class: "rounded btn btn-primary text-white fas fa-search  p-3"
           .col-auto.mt-3.mx-auto
-            .location-search.text-white.btn{onClick: "getPosition();"}
+            .location-search.text-white.btn{ onClick: "getPosition();" }
               近くのモヨオシを探す
     %section.events.px-5.pb-5
       .events__text.text-white.m-5.text-center.h3
       - unless @posts.empty?
         #paginate
           .events__wrapper.row
-            - @posts.each do |post| 
+            - @posts.each do |post|
               .events__content.col-sm-6.col-md-4.mb-3
-                .card{id: post.id}
+                .card{ id: post.id }
                   %label.m-1
                     - if post.image.present?
                       = image_tag asset_path("#{post.image}"), class: "card-img-top img-fluid rounded"
@@ -24,7 +24,7 @@
                       = image_tag asset_path("noimage.jpeg"), class: "card-img-top img-fluid rounded"
                     .card-body.event
                       %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-                      .event__name 
+                      .event__name
                         #{post.user.name} さん
                       .place.text-right
                         - if post.address.present?
@@ -37,7 +37,7 @@
                 .card.col-auto
                   .text-left
                     - post.genre_list.each do |genre|
-                      .badge.badge-primary{data:{role: "tagsinput"}}
+                      .badge.badge-primary{ data:{role: "tagsinput"} }
                         = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
                 - if user_signed_in?
                   .offset-8.col-auto.card

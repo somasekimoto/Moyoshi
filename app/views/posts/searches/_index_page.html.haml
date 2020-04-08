@@ -1,13 +1,13 @@
 #paginate
   .events__wrapper.row
-    - @posts.each do |post| 
+    - @posts.each do |post|
       .events__content.col-sm-6.col-md-4.mb-3
         - if @center_point.present?
           .h3.text-white.text-center
             現在地から
             = post.distance_to(@center_point).round
             km
-        .card{id: post.id}
+        .card{ id: post.id }
           %label.m-1
             - if post.image.present?
               = image_tag asset_path("#{post.image}"), class: "card-img-top img-fluid rounded"
@@ -28,10 +28,10 @@
         .card.col-auto
           .text-left
             - post.genre_list.each do |genre|
-              .badge.badge-primary{data:{role: "tagsinput"}}
+              .badge.badge-primary{ data:{role: "tagsinput"} }
                 = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
         - if user_signed_in?
           .offset-8.col-auto.card
             .text-center
-              = render partial: '/posts/posts', locals: {post: post}
+              = render partial: '/posts/posts', locals: { post: post }
 = paginate @posts, remote: true
