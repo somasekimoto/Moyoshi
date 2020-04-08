@@ -35,9 +35,9 @@
                         - if post.address.present?
                           = post.address
                         - else
-                          指定なし
+                          場所不明
                       .text-right
-                        = l post.created_at, format: :long
+                        = render partial: "/posts/time", locals: { post: post }
                         に投稿
                 .card.col-auto
                   .text-left
