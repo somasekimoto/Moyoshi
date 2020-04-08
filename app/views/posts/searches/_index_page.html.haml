@@ -1,25 +1,37 @@
-.events__wrapper.row
-  - @posts.each do |post| 
-    .events__content.col-sm-6.col-md-4.mb-3
-      .card{id: post.id}
-        %label.m-1
-          - if post.image
-            %img.card-img-top{src: "#{post.image}"}
-          - else
-            %img.card-img-top{src: "/public/noimage.jpeg"}
-          .card-body.event
-            %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
-            .event__name 
-              #{post.user.name} さん
-            .text-right
-              = l post.created_at, format: :long
-      .card.col-auto
-        .text-left
-          - post.genre_list.each do |genre|
-            .badge.badge-primary{data:{role: "tagsinput"}}
-              = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
-      - if user_signed_in?
-        .offset-8.col-auto.card
-          .text-center
-            = render partial: '/posts/posts', locals: {post: post}
+#paginate
+  .events__wrapper.row
+    - @posts.each do |post|
+      .events__content.col-sm-6.col-md-4.mb-3
+        - if @center_point.present?
+          .h3.text-white.text-center
+            現在地から
+            = post.distance_to(@center_point).round
+            km
+        .card{ id: post.id }
+          %label.m-1
+            - if post.image.present?
+              = image_tag asset_path("#{post.image}"), class: "card-img-top img-fluid rounded"
+            - else
+              = image_tag asset_path("noimage.jpeg"), class: "card-img-top img-fluid rounded"
+            .card-body.event
+              %h5= link_to "#{post.title}", post_path(post.id), class: "event-title stretched-link text-decoration-none"
+              .event__name 
+                #{post.user.name} さん
+              .place.text-right
+                - if post.address.present?
+                  = post.address
+                - else
+                  指定なし
+              .text-right
+                = render partial: "/posts/time", locals: { post: post }
+                に投稿
+        .card.col-auto
+          .text-left
+            - post.genre_list.each do |genre|
+              .badge.badge-primary{ data:{role: "tagsinput"} }
+                = link_to "#{genre}", tag_path(genre), class: 'text-decoration-none text-white'
+        - if user_signed_in?
+          .offset-8.col-auto.card
+            .text-center
+              = render partial: '/posts/posts', locals: { post: post }
 = paginate @posts, remote: true

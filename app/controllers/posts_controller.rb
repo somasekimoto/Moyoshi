@@ -5,6 +5,8 @@ class PostsController < ApplicationController
     else
       @posts = Post.all.page(params[:page]).per(3).includes(:user).order('created_at DESC')
     end
+    tags = Post.tag_counts_on(:genres).order('count DESC')
+    @tags_excluded = tags.reject{|t| t.name == "ボランティア" || t.name == "勉強会" || t.name == "セール" || t.name == "ソーシャル" }
     respond_to do |format|
       format.html
       format.js
@@ -37,7 +39,11 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
-    redirect_to root_path
+    if @post.save
+      redirect_to root_path, success: "更新に成功しました"
+    else
+      render :new, danger: "更新に失敗しました"
+    end
   end
 
   def destroy
@@ -48,6 +54,6 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:content, :image, :title, :genre_list).merge(user_id: current_user.id)
+    params.require(:post).permit(:content, :image, :title, :prefecture, :city, :town, :genre_list).merge(user_id: current_user.id)
   end
 end

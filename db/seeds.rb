@@ -58,9 +58,9 @@ Post.create(
       likes_count: 0
     },
     {
-      title: "溶接工場で働いて見たい人？（ご飯御馳走します。）",
-      content: "溶接工場で、溶接体験してみたい人を探しております。",
-      image: File.open('app/assets/images/factory-work.jpeg'),
+      title: "自習室提供",
+      content: "昨年まで、▲▲塾で使用していた大部屋が、閉校により空いています。テスト勉強をしたい方、静かに作業に集中したい方などなどに、この部屋を使ってもらいたいです。使用料は1人500円で一律です。平日10時〜21時まで開けてます。是非！！！",
+      image: File.open('app/assets/images/studying.jpeg'),
       user_id:4,
       likes_count: 0
     },
@@ -72,9 +72,9 @@ Post.create(
       likes_count: 0
     },
     {
-      title: "漁師体験",
-      content: "漁師体験してみたい人を募集しています。魚の種類、捌き方、",
-      image: File.open('app/assets/images/red-fish.jpeg'),
+      title: "保育士の卵必見！！[大学生ボランティア募集]",
+      content: "6月22日から始まる３日間の〇〇保育園のキャンプにボランティアとして、一緒に園児たちと過ごしてくれる方を募集しています。資格などは必要ありません。子供が好きで、無邪気な子供たちと明るく過ごしていただける方ならどなたでも歓迎します！",
+      image: File.open('app/assets/images/child-camp.jpeg'),
       user_id:2,
       likes_count: 0
     },
@@ -86,15 +86,15 @@ Post.create(
       likes_count: 0
     },
     {
-      title: "作業員の話し相手募集",
-      content: "深夜の工事現場の作業員の話し相手してくれる人を探しています。時給は2000円で、22時〜翌朝6時まで。",
-      image: File.open('app/assets/images/road-worker.jpeg'),
+      title: "大幅値下げ！！！",
+      content: "もりもり商店では、4月8日からの一週間、惣菜類を２０%オフで販売致しております。是非ともお立ち寄りくださいませ。",
+      image: File.open('app/assets/images/sale-market.jpeg'),
       user_id:4,
       likes_count: 0
     },
     {
-      title: "八百屋で職業体験してみませんか？",
-      content: "毎週水曜日、小林八百屋店のお手伝いしてくれる人を募集してます。",
+      title: "農業体験してみませんか？",
+      content: "毎週水曜日、□□あたりの畑で、早朝から畑仕事を手伝ってくれる人募集します。私たちが普段何気なく口にしている野菜たちがどのように収穫され、どのように出荷されているのか、規格外の野菜たちはどのように扱われているのか、全て話します。手伝ってくれたお礼と言ってはなんですが、好きなお野菜をプレゼントします。誰でも歓迎です。",
       image: File.open('app/assets/images/vegetable.jpeg'),
       user_id:1,
       likes_count: 0
