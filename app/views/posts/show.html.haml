@@ -20,7 +20,7 @@
           = link_to "#{@post.user.name}", user_path(@post.user), class: "text-decoration-none text-dark"
           さんのモヨオシ
       .post-date.col.text-right.mb-4
-        = l @post.created_at, format: :long
+        = render partial: "time", locals: { post: @post }
         に投稿
       .place.row
         .col.text-right
