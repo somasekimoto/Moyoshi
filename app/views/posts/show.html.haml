@@ -71,4 +71,6 @@
                     #{comment.user.name}:
                   %p.col-auto.text-left
                     #{comment.text}
+                  .post-date.text-right.col-auto
+                    = render partial: "time", locals: { post: comment }
   
