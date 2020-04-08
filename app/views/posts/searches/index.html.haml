@@ -36,7 +36,7 @@
                           = post.address
                         - else
                           場所不明
-                      .text-right
+                      .post-date.text-right
                         = render partial: "/posts/time", locals: { post: post }
                         に投稿
                 .card.col-auto
@@ -74,7 +74,7 @@
           .col-md-6.col-lg-3.text-center
             .mt-5
               .fas.fa-4x.fa-chalkboard-teacher
-              = link_to "教室・勉強会", tag_path("勉強会・教室"), class: "icon text-decoration-none h3 mb-2 stretched-link"
+              = link_to "勉強会", tag_path("勉強会"), class: "icon text-decoration-none h3 mb-2 stretched-link"
               %p.text-muted.mb-0
                 自習室、プログラミング教室など
           .col-md-6.col-lg-3.text-center
@@ -93,4 +93,4 @@
           .col-auto
             - @tags_excluded.uniq.each do |tag|
               .badge.badge-primary
-                = link_to "#{tag}", tag_path(tag), class: "text-white text-decoration-none"
+                = link_to "#{tag}", tag_path(tag.name), class: "text-white text-decoration-none"
