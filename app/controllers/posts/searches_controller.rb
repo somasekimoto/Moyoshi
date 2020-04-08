@@ -7,7 +7,7 @@ class Posts::SearchesController < ApplicationController
     else 
       latitude = params[:latitude].to_f
       longitude = params[:longitude].to_f
-      @locations = Post.within_box(200, latitude, longitude)
+      @locations = Post.within_box(10000, latitude, longitude)
       unless @locations.empty?
         @center_point = [latitude, longitude]
         near_locations = @locations.sort_by{|l| l.distance_to(@center_point)}
