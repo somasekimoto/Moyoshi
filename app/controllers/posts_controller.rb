@@ -39,7 +39,11 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     @post.update(post_params)
-    redirect_to root_path
+    if @post.save
+      redirect_to root_path, success: "更新に成功しました"
+    else
+      render :new, danger: "更新に失敗しました"
+    end
   end
 
   def destroy
