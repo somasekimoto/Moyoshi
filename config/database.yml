@@ -21,8 +21,9 @@ default: &default
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: 5
   username: root
-  password: 
+  password: password
   socket: /tmp/mysql.sock
+  host: db
 
 development:
   <<: *default
