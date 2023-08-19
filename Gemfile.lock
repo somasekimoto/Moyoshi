@@ -201,7 +201,7 @@ GEM
     net-scp (2.0.0)
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
-    nio4r (2.5.2)
+    nio4r (2.5.9)
     nokogiri (1.13.0)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
@@ -217,7 +217,7 @@ GEM
       pry (>= 0.10.4)
     psych (3.1.0)
     public_suffix (4.0.6)
-    puma (4.3.9)
+    puma (5.6.7)
       nio4r (~> 2.0)
     querly (1.0.0)
       activesupport (>= 5.0)
@@ -370,7 +370,7 @@ DEPENDENCIES
   mini_racer
   mysql2
   pry-rails
-  puma (~> 4.3)
+  puma (~> 5.6)
   querly
   rails (~> 5.2.4, >= 5.2.4.1)
   rails-i18n (~> 5.1)
