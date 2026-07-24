@@ -1,5 +1,9 @@
 # README
 
+> [!NOTE]
+> このアプリは現在公開を終了しています。Railsで初めて1人で作ったアプリの記録としてアーカイブしています。
+> This app is no longer online. Archived as a record of my first solo Rails application.
+
 # About this App Moyoshi
 
 [![Image from Gyazo](https://i.gyazo.com/31ac599b9e0235f9bc8428fbd45626f6.jpg)](https://gyazo.com/31ac599b9e0235f9bc8428fbd45626f6)
@@ -8,7 +12,7 @@
 
 ## URL 
 
-https://www.moyoshi.me/
+~~https://www.moyoshi.me/~~ (closed)
 
 ### 既存ユーザー
 
